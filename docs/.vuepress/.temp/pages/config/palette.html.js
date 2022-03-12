@@ -6,6 +6,15 @@ export const data = {
   "frontmatter": {},
   "excerpt": "",
   "headers": [],
-  "git": {},
+  "git": {
+    "updatedTime": 1647073963000,
+    "contributors": [
+      {
+        "name": "JintaoYang18",
+        "email": "colsonyang212@gmail.com",
+        "commits": 1
+      }
+    ]
+  },
   "filePathRelative": "config/palette.md"
 }

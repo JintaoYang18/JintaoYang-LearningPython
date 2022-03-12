@@ -63,7 +63,7 @@
 //   }
 module.exports = {
     base: '/JintaoYang-LearningPython/',
-    title: 'Yang\'s Learning Python (unaccomplished)',
+    title: 'Yang\'s Learning Python',
     description: 'fun',
     head: [['link', { rel: 'icon', href: './images/logo2.png' }]],
     themeConfig: {

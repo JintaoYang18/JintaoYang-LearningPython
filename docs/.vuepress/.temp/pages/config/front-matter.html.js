@@ -43,6 +43,15 @@ export const data = {
       "children": []
     }
   ],
-  "git": {},
+  "git": {
+    "updatedTime": 1647073963000,
+    "contributors": [
+      {
+        "name": "JintaoYang18",
+        "email": "colsonyang212@gmail.com",
+        "commits": 1
+      }
+    ]
+  },
   "filePathRelative": "config/front-matter.md"
 }

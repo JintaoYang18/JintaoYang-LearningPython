@@ -3,28 +3,88 @@ sidebar: auto
 next: /config/cop
 ---
 
-# Guide
+# 指南
 
 
-## Intro
+## 介绍 📘
 
-> Python 
+> Python由荷兰数学和计算机科学研究学会的吉多·范罗苏姆 于1990 年代初设计，作为一门叫做ABC语言的替代品。 Python提供了高效的高级数据结构，还能简单有效地面向对象编程。Python语法和动态类型，以及解释型语言的本质，使它成为多数平台上写脚本和快速开发应用的编程语言，随着版本的不断更新和语言新功能的添加，逐渐被用于独立的、大型项目的开发。
 
 ![学习Python](./assets/python-logo-master-v3-TM.png)
 
-Learning Python.
-
-We try to implement all the common and necessary blog features in the plugin.
+学习 Python.
 
 
+## 安装 🔩
 
-## Getting Started from scratch
+略。
 
-In this guide, you'll learn how to add default blog theme to a new project manually.
+## 依赖环境等 🕹️
 
-### Installation
+略。
 
-```bash
+## 使用 🔘
+
+掌握尚不完全，此处还不会梳理目录架构，想到哪写到哪。
+
+### sys.stdout = file 日志记录 📓
+
+Python 标准输出 `sys.stdout` 重定向 （*从控制台重定向到文件*）
+
+原始的 sys.stdout 指向控制台，如果把文件的对象的引用赋给 `sys.stdout`，那么 `print` 调用的就是文件对象的 `write` 方法：
+
+```python
+import os
+import sys
+
+f_handler=open('out.log', 'w')
+sys.stdout=f_handler
+print 'hello' 
+# 这个 hello 不能在控制台查看
+# 这个 hello 在文件 out.log 中
+```
+
+### 时间戳 🕡️
+
+```python
+import time
+
+# 现在时间-格式化
+datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
+# 打印现在时间
+print(datetime.now())
+```
+
+### 目录有无判断及新建 📇
+```python
+import os
+
+# 判断有无
+if not os.path.exists(save_dir):
+  # 新建目录
+  os.makedirs(save_dir)
+```
+
+### argparse 参数传入 ⚙️
+```python
+import argparse
+
+parser = argparse.ArgumentParser(description='Python')
+parser.add_argument('-sd', '--save-dir', default='./results', help='path to save')
+args = parser.parse_args()
+  
+main(args)
+```
+
+### assert 断言 ❓️
+
+还不会
+
+### YAML文件的读写 📄
+
+还不会
+
+<!-- ```bash
 mkdir blog && cd blog # Create an empty directory and go into it
 
 yarn add vuepress @vuepress/theme-blog -D # Install the dependencies
@@ -96,10 +156,11 @@ By default, VuePress dev server is listening at `http://localhost:8080/`, wherea
 :::warning
 
 However, it's still a convenient tool to help you scaffold out a new project with a set of predefined templates.
-:::
+::: -->
 
-## Final
+## 最后 🔚
 
-Now, Check out your blog at `localhost:8080`, if everything is ok, you might be interested in the following topics:
+顺顺利利，多学多用。
+<!-- Now, Check out your blog at `localhost:8080`, if everything is ok, you might be interested in the following topics:
 
-- Configure this theme: We'll discuss in [the next section](../config)
+- Configure this theme: We'll discuss in [the next section](../config) -->

@@ -1,7 +1,7 @@
 export const data = {
   "key": "v-8daa1a0e",
   "path": "/",
-  "title": "Guide",
+  "title": "指南",
   "lang": "en-US",
   "frontmatter": {
     "sidebar": "auto",
@@ -11,66 +11,81 @@ export const data = {
   "headers": [
     {
       "level": 2,
-      "title": "Intro",
-      "slug": "intro",
+      "title": "介绍 📘",
+      "slug": "介绍-📘",
       "children": []
     },
     {
       "level": 2,
-      "title": "Getting Started from scratch",
-      "slug": "getting-started-from-scratch",
+      "title": "安装 🔩",
+      "slug": "安装-🔩",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "依赖环境等 🕹️",
+      "slug": "依赖环境等-🕹️",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "使用 🔘",
+      "slug": "使用-🔘",
       "children": [
         {
           "level": 3,
-          "title": "Installation",
-          "slug": "installation",
+          "title": "sys.stdout = file 日志记录 📓",
+          "slug": "sys-stdout-file-日志记录-📓",
           "children": []
         },
         {
           "level": 3,
-          "title": "Folder structure",
-          "slug": "folder-structure",
+          "title": "时间戳 🕡️",
+          "slug": "时间戳-🕡️",
           "children": []
         },
         {
           "level": 3,
-          "title": "Using @vuepress/theme-blog",
-          "slug": "using-vuepress-theme-blog",
+          "title": "目录有无判断及新建 📇",
+          "slug": "目录有无判断及新建-📇",
           "children": []
         },
         {
           "level": 3,
-          "title": "Generating content",
-          "slug": "generating-content",
+          "title": "argparse 参数传入 ⚙️",
+          "slug": "argparse-参数传入-⚙️",
           "children": []
         },
         {
           "level": 3,
-          "title": "Blog tags",
-          "slug": "blog-tags",
+          "title": "assert 断言 ❓️",
+          "slug": "assert-断言-❓️",
           "children": []
         },
         {
           "level": 3,
-          "title": "Summary",
-          "slug": "summary",
+          "title": "YAML文件的读写 📄",
+          "slug": "yaml文件的读写-📄",
           "children": []
         }
       ]
     },
     {
       "level": 2,
-      "title": "Quick Start",
-      "slug": "quick-start",
-      "children": []
-    },
-    {
-      "level": 2,
-      "title": "Final",
-      "slug": "final",
+      "title": "最后 🔚",
+      "slug": "最后-🔚",
       "children": []
     }
   ],
-  "git": {},
+  "git": {
+    "updatedTime": 1647073963000,
+    "contributors": [
+      {
+        "name": "JintaoYang18",
+        "email": "colsonyang212@gmail.com",
+        "commits": 1
+      }
+    ]
+  },
   "filePathRelative": "README.md"
 }

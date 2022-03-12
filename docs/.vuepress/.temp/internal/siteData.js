@@ -1,7 +1,7 @@
 export const siteData = {
   "base": "/JintaoYang-LearningPython/",
   "lang": "en-US",
-  "title": "Yang's Learning Python (unaccomplished)",
+  "title": "Yang's Learning Python",
   "description": "fun",
   "head": [
     [
