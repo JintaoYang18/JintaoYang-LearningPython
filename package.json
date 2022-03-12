@@ -1,0 +1,18 @@
+{
+  "name": "YangLearnPython",
+  "version": "1.0.0",
+  "description": "Funny",
+  "main": "index.js",
+  "repository": "https://github.com/JintaoYang18/JintaoYang-LearningPython.git",
+  "author": "JintaoYang18 <90304586+JintaoYang18@users.noreply.github.com>",
+  "license": "MIT",
+  "homepage": "https://JintaoYang18.github.io/JintaoYang-LearningPython",
+  "devDependencies": {
+    "vuepress": "^2.0.0-beta.36"
+  },
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "docs:deploy": "bash deploy.sh"
+  }
+}
