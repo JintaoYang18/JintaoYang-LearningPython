@@ -44,81 +44,32 @@ parser<span class="token punctuation">.</span>add_argument<span class="token pun
 args <span class="token operator">=</span> parser<span class="token punctuation">.</span>parse_args<span class="token punctuation">(</span><span class="token punctuation">)</span>
   
 main<span class="token punctuation">(</span>args<span class="token punctuation">)</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h3 id="assert-断言-❓️" tabindex="-1"><a class="header-anchor" href="#assert-断言-❓️" aria-hidden="true">#</a> assert 断言 ❓️</h3>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h3 id="多卡训练-🖥🖥🖥🖥" tabindex="-1"><a class="header-anchor" href="#多卡训练-🖥🖥🖥🖥" aria-hidden="true">#</a> 多卡训练 🖥🖥🖥🖥</h3>
+<p><code>torch.nn.DataParallel</code>多卡训练，可能会影响性能和可复现性，谨慎使用。</p>
+<div class="language-python ext-py line-numbers-mode"><pre v-pre class="language-python"><code><span class="token comment"># torch.nn.DataParallel</span>
+device_ids <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span>
+net <span class="token operator">=</span> torch<span class="token punctuation">.</span>nn<span class="token punctuation">.</span>DataParallel<span class="token punctuation">(</span>net<span class="token punctuation">,</span> device_ids<span class="token operator">=</span>device_ids<span class="token punctuation">)</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p><a href="https://zhuanlan.zhihu.com/p/102697821" target="_blank" rel="noopener noreferrer">参考1:知乎<ExternalLinkIcon/></a></p>
+<p><a href="https://www.zhihu.com/pin/1324807219972300800" target="_blank" rel="noopener noreferrer">参考2:问题<ExternalLinkIcon/></a></p>
+<h3 id="torch加速训练gpu-⏩️" tabindex="-1"><a class="header-anchor" href="#torch加速训练gpu-⏩️" aria-hidden="true">#</a> Torch加速训练GPU ⏩️</h3>
+<p><code>torch.backends.cudnn.benchmark = True</code>将会让程序在开始时花费一点额外时间，为整个网络的每个卷积层搜索最适合它的卷积实现算法，进而实现网络的加速。</p>
+<p>适用场景是<strong>网络结构固定（不是动态变化的），网络的输入形状（包括 batch size，图片大小，输入的通道）是不变的</strong>，其实也就是一般情况下都比较适用。</p>
+<p>反之，如果卷积层的设置一直变化，将会导致程序不停地做优化，反而会耗费更多的时间。</p>
+<div class="language-python ext-py line-numbers-mode"><pre v-pre class="language-python"><code><span class="token keyword">if</span> args<span class="token punctuation">.</span>use_gpu <span class="token keyword">and</span> torch<span class="token punctuation">.</span>cuda<span class="token punctuation">.</span>is_available<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    device <span class="token operator">=</span> torch<span class="token punctuation">.</span>device<span class="token punctuation">(</span><span class="token string">'cuda'</span><span class="token punctuation">)</span>
+    torch<span class="token punctuation">.</span>backends<span class="token punctuation">.</span>cudnn<span class="token punctuation">.</span>benchmark <span class="token operator">=</span> <span class="token boolean">True</span> <span class="token comment"># 一般加在开头</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    device <span class="token operator">=</span> torch<span class="token punctuation">.</span>device<span class="token punctuation">(</span><span class="token string">'cpu'</span><span class="token punctuation">)</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p><a href="https://zhuanlan.zhihu.com/p/73711222" target="_blank" rel="noopener noreferrer">参考:知乎<ExternalLinkIcon/></a></p>
+<h3 id="assert-断言-❓️" tabindex="-1"><a class="header-anchor" href="#assert-断言-❓️" aria-hidden="true">#</a> assert 断言 ❓️</h3>
 <p>还不会</p>
 <h3 id="yaml文件的读写-📄" tabindex="-1"><a class="header-anchor" href="#yaml文件的读写-📄" aria-hidden="true">#</a> YAML文件的读写 📄</h3>
 <p>还不会</p>
-<!-- ```bash
-mkdir blog && cd blog # Create an empty directory and go into it
-
-yarn add vuepress @vuepress/theme-blog -D # Install the dependencies
-# OR npm install vuepress @vuepress/theme-blog -D
-```
-### Folder structure
-
-Here's the recommended project structure:
-
+<!-- 
 **Required**:
-
-- `blog/.vuepress/config.js`: Entry file of configuration, can also be `yml` or `toml`.
-- `blog/_posts`: Stores your post content.
-
-**Optional**:
-
-- `blog/.vuepress/components`: The Vue components .
-
-
-### Using @vuepress/theme-blog
-
-You must add `@vuepress/theme-blog` as a theme in `.vuepress/config.js`.
-
-```js
-// .vuepress/config.js
-module.exports = {
-  title: 'VuePress Blog Example', // Title for the site. This will be displayed in the navbar.
-}
-```
-
-
-From now on, you can run `yarn dev` or `npm run dev` and head `localhost:8080` to see your blog!
-
-### Generating content
-
-The `_posts` folder is where your blog posts live. You can simply write blog posts in Markdown.
-
-All blog post files can begin with front matter. Only `title` is required, but we recommend you define all frontmatter variables as below. They'll be used to set the corresponding layout. Check out [frontmatter](config/front-matter) for more details.
-
-
-### Blog tags
-
-By default, Navigate to `/tag/`, you'll see the tag entry page.
-You can set you own tags in front matter, and they'll automatically be classified:
-
-
-### Summary
-
-By default, summary will be extracted from source markdowns. If you need to override it, we present the following two approaches:
-
+Check out [frontmatter](config/front-matter) for more details.
 1. [Writing the summary manually in frontmatter](./front-matter.md#summary)
-
-
-
-## Quick Start
-
-Step 1: Scaffolding out a VuePress blog
-```bash
-yarn create vuepress [blogName]
-
-cd [blogName] && yarn
-```
-
-Step 2: Develop & Build
-
-
-By default, VuePress dev server is listening at `http://localhost:8080/`, whereas the built files will be in `.vuepress/dist`.
-
 :::warning
-
 However, it's still a convenient tool to help you scaffold out a new project with a set of predefined templates.
 ::: -->
 <h2 id="最后-🔚" tabindex="-1"><a class="header-anchor" href="#最后-🔚" aria-hidden="true">#</a> 最后 🔚</h2>

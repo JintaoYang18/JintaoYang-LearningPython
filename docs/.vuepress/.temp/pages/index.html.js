@@ -58,6 +58,18 @@ export const data = {
         },
         {
           "level": 3,
+          "title": "多卡训练 🖥🖥🖥🖥",
+          "slug": "多卡训练-🖥🖥🖥🖥",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "Torch加速训练GPU ⏩️",
+          "slug": "torch加速训练gpu-⏩️",
+          "children": []
+        },
+        {
+          "level": 3,
           "title": "assert 断言 ❓️",
           "slug": "assert-断言-❓️",
           "children": []
@@ -78,12 +90,12 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1647073963000,
+    "updatedTime": 1647082561000,
     "contributors": [
       {
         "name": "JintaoYang18",
         "email": "colsonyang212@gmail.com",
-        "commits": 1
+        "commits": 2
       }
     ]
   },

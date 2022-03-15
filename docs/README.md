@@ -76,6 +76,37 @@ args = parser.parse_args()
 main(args)
 ```
 
+### 多卡训练 🖥🖥🖥🖥
+
+`torch.nn.DataParallel`多卡训练，可能会影响性能和可复现性，谨慎使用。
+
+```python
+# torch.nn.DataParallel
+device_ids = [0, 1]
+net = torch.nn.DataParallel(net, device_ids=device_ids)
+```
+[参考1:知乎](https://zhuanlan.zhihu.com/p/102697821)
+
+[参考2:问题](https://www.zhihu.com/pin/1324807219972300800)
+
+### Torch加速训练GPU ⏩️
+
+`torch.backends.cudnn.benchmark = True`将会让程序在开始时花费一点额外时间，为整个网络的每个卷积层搜索最适合它的卷积实现算法，进而实现网络的加速。
+
+适用场景是**网络结构固定（不是动态变化的），网络的输入形状（包括 batch size，图片大小，输入的通道）是不变的**，其实也就是一般情况下都比较适用。
+
+反之，如果卷积层的设置一直变化，将会导致程序不停地做优化，反而会耗费更多的时间。
+
+```python
+if args.use_gpu and torch.cuda.is_available():
+    device = torch.device('cuda')
+    torch.backends.cudnn.benchmark = True # 一般加在开头
+else:
+    device = torch.device('cpu')
+```
+
+[参考:知乎](https://zhuanlan.zhihu.com/p/73711222)
+
 ### assert 断言 ❓️
 
 还不会
@@ -84,77 +115,11 @@ main(args)
 
 还不会
 
-<!-- ```bash
-mkdir blog && cd blog # Create an empty directory and go into it
-
-yarn add vuepress @vuepress/theme-blog -D # Install the dependencies
-# OR npm install vuepress @vuepress/theme-blog -D
-```
-### Folder structure
-
-Here's the recommended project structure:
-
+<!-- 
 **Required**:
-
-- `blog/.vuepress/config.js`: Entry file of configuration, can also be `yml` or `toml`.
-- `blog/_posts`: Stores your post content.
-
-**Optional**:
-
-- `blog/.vuepress/components`: The Vue components .
-
-
-### Using @vuepress/theme-blog
-
-You must add `@vuepress/theme-blog` as a theme in `.vuepress/config.js`.
-
-```js
-// .vuepress/config.js
-module.exports = {
-  title: 'VuePress Blog Example', // Title for the site. This will be displayed in the navbar.
-}
-```
-
-
-From now on, you can run `yarn dev` or `npm run dev` and head `localhost:8080` to see your blog!
-
-### Generating content
-
-The `_posts` folder is where your blog posts live. You can simply write blog posts in Markdown.
-
-All blog post files can begin with front matter. Only `title` is required, but we recommend you define all frontmatter variables as below. They'll be used to set the corresponding layout. Check out [frontmatter](config/front-matter) for more details.
-
-
-### Blog tags
-
-By default, Navigate to `/tag/`, you'll see the tag entry page.
-You can set you own tags in front matter, and they'll automatically be classified:
-
-
-### Summary
-
-By default, summary will be extracted from source markdowns. If you need to override it, we present the following two approaches:
-
+Check out [frontmatter](config/front-matter) for more details.
 1. [Writing the summary manually in frontmatter](./front-matter.md#summary)
-
-
-
-## Quick Start
-
-Step 1: Scaffolding out a VuePress blog
-```bash
-yarn create vuepress [blogName]
-
-cd [blogName] && yarn
-```
-
-Step 2: Develop & Build
-
-
-By default, VuePress dev server is listening at `http://localhost:8080/`, whereas the built files will be in `.vuepress/dist`.
-
 :::warning
-
 However, it's still a convenient tool to help you scaffold out a new project with a set of predefined templates.
 ::: -->
 
