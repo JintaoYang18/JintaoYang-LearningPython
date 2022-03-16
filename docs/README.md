@@ -47,7 +47,7 @@ print 'hello'
 ### 时间戳 🕡️
 
 ```python
-import time
+from datetime import datetime
 
 # 现在时间-格式化
 datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
@@ -107,6 +107,27 @@ else:
 
 [参考:知乎](https://zhuanlan.zhihu.com/p/73711222)
 
+### print 动态打印 🖨️
+
+实现原地输出动态进度。
+
+```python
+import time
+for i in range(50):
+    print("Loading" + "."*i, end="\r")
+    time.sleep(0.1)
+print("")
+```
+
+### PyTorch model.train() ⛹‍♂️
+
+```python
+model.train():
+# 在使用pytorch构建神经网络的时候，训练过程中会在程序上方添加一句model.train()，作用是启用batch normalization和drop out。
+model.eval():
+# 测试过程中会使用model.eval()，这时神经网络会沿用batch normalization的值，并不使用drop out。
+```
+
 ### assert 断言 ❓️
 
 还不会
@@ -122,6 +143,72 @@ Check out [frontmatter](config/front-matter) for more details.
 :::warning
 However, it's still a convenient tool to help you scaffold out a new project with a set of predefined templates.
 ::: -->
+
+### Pytorch .pth 保存数据 💾
+
+```python
+i=1
+for ... :
+  if i == 1 :
+      x_save_pt = out_resize_tensor #torch.from_numpy(out_display_img1).unsqueeze(0)
+      y_save_pt = test_labels
+  else :
+      x_save_pt = torch.cat([x_save_pt, out_resize_tensor], dim=0) #x_save_pt = torch.cat([x_save_pt, torch.from_numpy(out_display_img1).unsqueeze(0)], dim=0)
+      y_save_pt = torch.cat([y_save_pt, test_labels], dim=0)
+  i = i+1
+
+torch.save({'data': x_save_pt, 'target': y_save_pt}, "./12_googlenet_" + Atk_Type + ".pt")
+```
+
+### Pytorch 数据之间转换 🔌
+
+**1. PIL, Numpy to Tensor**
+
+```python
+import torchvision.transforms as transforms
+x_Tensor = transforms.ToTensor()(x_PIL).unsqueeze(0)
+x_Tensor = transforms.ToTensor()(x_Numpy).unsqueeze(0)
+```
+
+**2. Tensor to PIL**
+
+```python
+import torchvision.transforms as transforms
+
+unloader = transforms.ToPILImage()
+
+def trans_image(tensor):
+    image = tensor.cpu().clone()
+    image = image.squeeze(0)
+    image = unloader(image)
+    image = image.resize((299, 299), Image.ANTIALIAS) # 缩放
+    return image
+
+x_PIL = trans_image(x_Tensor)
+```
+
+**3. PIL to Numpy**
+
+```python
+x_Numpy = numpy.array(x_PIL, dtype = numpy.float32) # 数据类型
+```
+
+### Pytorch Tensor数据维度交换 ⛗
+
+```python
+b = a.permute(0, 3, 1, 2)
+```
+
+### Shell 脚本 🗔
+
+```bash
+for TYPE in clean adv
+do
+    echo  "TYPE:  ${TYPE}"
+    python googlenet.py --data_test Demo --scale 2 --pre_train download --test_only --save_results --type ${TYPE}
+    python eval_googlenet.py --atk-type ${TYPE} --test-batch-size 64  --date 20220316
+done
+```
 
 ## 最后 🔚
 

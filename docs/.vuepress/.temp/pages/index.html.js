@@ -70,6 +70,18 @@ export const data = {
         },
         {
           "level": 3,
+          "title": "print 动态打印 🖨️",
+          "slug": "print-动态打印-🖨️",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "PyTorch model.train() ⛹‍♂️",
+          "slug": "pytorch-model-train-⛹‍♂️",
+          "children": []
+        },
+        {
+          "level": 3,
           "title": "assert 断言 ❓️",
           "slug": "assert-断言-❓️",
           "children": []
@@ -78,6 +90,30 @@ export const data = {
           "level": 3,
           "title": "YAML文件的读写 📄",
           "slug": "yaml文件的读写-📄",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "Pytorch .pth 保存数据 💾",
+          "slug": "pytorch-pth-保存数据-💾",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "Pytorch 数据之间转换 🔌",
+          "slug": "pytorch-数据之间转换-🔌",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "Pytorch Tensor数据维度交换 ⛗",
+          "slug": "pytorch-tensor数据维度交换-⛗",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "Shell 脚本 🗔",
+          "slug": "shell-脚本-🗔",
           "children": []
         }
       ]
@@ -90,12 +126,12 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1647082561000,
+    "updatedTime": 1647314949000,
     "contributors": [
       {
         "name": "JintaoYang18",
         "email": "colsonyang212@gmail.com",
-        "commits": 2
+        "commits": 3
       }
     ]
   },
