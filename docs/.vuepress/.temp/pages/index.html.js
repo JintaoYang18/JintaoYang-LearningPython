@@ -121,6 +121,12 @@ export const data = {
           "title": "Normalization的扰动求解Torch保存 ➖",
           "slug": "normalization的扰动求解torch保存-➖",
           "children": []
+        },
+        {
+          "level": 3,
+          "title": "MarkDown 写目录，带跳转 ↪️",
+          "slug": "markdown-写目录-带跳转-↪️",
+          "children": []
         }
       ]
     },
@@ -132,12 +138,12 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1647428424000,
+    "updatedTime": 1647506959000,
     "contributors": [
       {
         "name": "JintaoYang18",
         "email": "colsonyang212@gmail.com",
-        "commits": 4
+        "commits": 5
       }
     ]
   },
