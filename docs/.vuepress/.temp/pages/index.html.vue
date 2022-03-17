@@ -125,7 +125,20 @@ x_PIL <span class="token operator">=</span> trans_image<span class="token punctu
     python googlenet.py --data_test Demo --scale <span class="token number">2</span> --pre_train download --test_only --save_results --type <span class="token variable">${TYPE}</span>
     python eval_googlenet.py --atk-type <span class="token variable">${TYPE}</span> --test-batch-size <span class="token number">64</span>  --date <span class="token number">20220316</span>
 <span class="token keyword">done</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h2 id="最后-🔚" tabindex="-1"><a class="header-anchor" href="#最后-🔚" aria-hidden="true">#</a> 最后 🔚</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h3 id="normalization的扰动求解torch保存-➖" tabindex="-1"><a class="header-anchor" href="#normalization的扰动求解torch保存-➖" aria-hidden="true">#</a> Normalization的扰动求解Torch保存 ➖</h3>
+<div class="language-python ext-py line-numbers-mode"><pre v-pre class="language-python"><code><span class="token keyword">import</span> torch
+
+unloader <span class="token operator">=</span> transforms<span class="token punctuation">.</span>ToPILImage<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+perturb <span class="token operator">=</span> <span class="token punctuation">(</span>img_fgm <span class="token operator">-</span> img<span class="token punctuation">)</span>
+p_min <span class="token operator">=</span> torch<span class="token punctuation">.</span><span class="token builtin">min</span><span class="token punctuation">(</span>perturb<span class="token punctuation">)</span>
+p_max <span class="token operator">=</span> torch<span class="token punctuation">.</span><span class="token builtin">max</span><span class="token punctuation">(</span>perturb<span class="token punctuation">)</span>
+normal_p <span class="token operator">=</span> <span class="token punctuation">(</span>perturb <span class="token operator">+</span> p_min<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>p_max <span class="token operator">-</span> p_min<span class="token punctuation">)</span>
+normal_p <span class="token operator">=</span> torch<span class="token punctuation">.</span>squeeze<span class="token punctuation">(</span>normal_p<span class="token punctuation">,</span> dim<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+normal_p <span class="token operator">=</span> unloader<span class="token punctuation">(</span>normal_p<span class="token punctuation">)</span>
+name <span class="token operator">=</span> <span class="token string">'adv_perturb.bmp'</span>
+normal_p<span class="token punctuation">.</span>save<span class="token punctuation">(</span><span class="token string">'./fgsm_test/'</span> <span class="token operator">+</span> name<span class="token punctuation">)</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><h2 id="最后-🔚" tabindex="-1"><a class="header-anchor" href="#最后-🔚" aria-hidden="true">#</a> 最后 🔚</h2>
 <p>顺顺利利，多学多用。</p>
 <!-- Now, Check out your blog at `localhost:8080`, if everything is ok, you might be interested in the following topics:
 

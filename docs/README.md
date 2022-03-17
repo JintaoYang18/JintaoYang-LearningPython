@@ -210,6 +210,23 @@ do
 done
 ```
 
+### Normalization的扰动求解Torch保存 ➖
+
+```python
+import torch
+
+unloader = transforms.ToPILImage()
+
+perturb = (img_fgm - img)
+p_min = torch.min(perturb)
+p_max = torch.max(perturb)
+normal_p = (perturb + p_min) / (p_max - p_min)
+normal_p = torch.squeeze(normal_p, dim=0)
+normal_p = unloader(normal_p)
+name = 'adv_perturb.bmp'
+normal_p.save('./fgsm_test/' + name)
+```
+
 ## 最后 🔚
 
 顺顺利利，多学多用。

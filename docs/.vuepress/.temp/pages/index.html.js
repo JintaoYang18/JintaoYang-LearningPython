@@ -115,6 +115,12 @@ export const data = {
           "title": "Shell 脚本 🗔",
           "slug": "shell-脚本-🗔",
           "children": []
+        },
+        {
+          "level": 3,
+          "title": "Normalization的扰动求解Torch保存 ➖",
+          "slug": "normalization的扰动求解torch保存-➖",
+          "children": []
         }
       ]
     },
@@ -126,12 +132,12 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1647314949000,
+    "updatedTime": 1647428424000,
     "contributors": [
       {
         "name": "JintaoYang18",
         "email": "colsonyang212@gmail.com",
-        "commits": 3
+        "commits": 4
       }
     ]
   },
