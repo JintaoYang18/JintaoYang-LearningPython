@@ -157,7 +157,27 @@ normal_p<span class="token punctuation">.</span>save<span class="token punctuati
 <span class="token list punctuation">-</span> <span class="token url">[<span class="token content">代码运行</span>](<span class="token url">#代码运行</span>)</span>
   <span class="token list punctuation">-</span> <span class="token url">[<span class="token content">进入目录</span>](<span class="token url">#进入目录</span>)</span>
 <span class="token list punctuation">-</span> <span class="token url">[<span class="token content">参考文献</span>](<span class="token url">#参考文献</span>)</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><h2 id="最后-🔚" tabindex="-1"><a class="header-anchor" href="#最后-🔚" aria-hidden="true">#</a> 最后 🔚</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><h3 id="pdb调试器-👨🏻‍💻" tabindex="-1"><a class="header-anchor" href="#pdb调试器-👨🏻‍💻" aria-hidden="true">#</a> pdb调试器 👨🏻‍💻</h3>
+<ul>
+<li>ENTER (重复上次命令)</li>
+<li>c (继续)</li>
+<li>l (查找当前位于哪里)</li>
+<li>s (进入子程序,如果当前有一个函数调用，那么 s 会进入被调用的函数体)</li>
+<li>n(ext) 让程序运行下一行，如果当前语句有一个函数调用，用 n 是不会进入被调用的函数体中的</li>
+<li>r (运行直到子程序结束)</li>
+<li>!&lt;python 命令&gt;</li>
+<li>h (帮助)</li>
+<li>a(rgs) 打印当前函数的参数</li>
+<li>j(ump) 让程序跳转到指定的行数</li>
+<li>l(ist) 可以列出当前将要运行的代码块</li>
+<li>p(rint) 最有用的命令之一，打印某个变量</li>
+<li>q(uit) 退出调试</li>
+<li>r(eturn) 继续执行，直到函数体返回</li>
+</ul>
+<div class="language-python ext-py line-numbers-mode"><pre v-pre class="language-python"><code><span class="token keyword">import</span> pdb
+
+pdb<span class="token punctuation">.</span>set_trace<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h2 id="最后-🔚" tabindex="-1"><a class="header-anchor" href="#最后-🔚" aria-hidden="true">#</a> 最后 🔚</h2>
 <p>顺顺利利，多学多用。</p>
 <!-- Now, Check out your blog at `localhost:8080`, if everything is ok, you might be interested in the following topics:
 
