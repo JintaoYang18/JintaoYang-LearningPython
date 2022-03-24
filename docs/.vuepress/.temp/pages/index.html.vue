@@ -177,7 +177,59 @@ normal_p<span class="token punctuation">.</span>save<span class="token punctuati
 <div class="language-python ext-py line-numbers-mode"><pre v-pre class="language-python"><code><span class="token keyword">import</span> pdb
 
 pdb<span class="token punctuation">.</span>set_trace<span class="token punctuation">(</span><span class="token punctuation">)</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h2 id="最后-🔚" tabindex="-1"><a class="header-anchor" href="#最后-🔚" aria-hidden="true">#</a> 最后 🔚</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h3 id="pytorch-n-dataloader-同序训练-✌️" tabindex="-1"><a class="header-anchor" href="#pytorch-n-dataloader-同序训练-✌️" aria-hidden="true">#</a> PyTorch-N_DataLoader-同序训练 ✌️</h3>
+<ul>
+<li>读取DataLoader, 设定generator</li>
+</ul>
+<div class="language-python ext-py line-numbers-mode"><pre v-pre class="language-python"><code><span class="token keyword">def</span> <span class="token function">data_loader_folder</span><span class="token punctuation">(</span>samples_dir<span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">,</span>
+                       b_s<span class="token punctuation">:</span> <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span>
+                       shuffle_bi<span class="token punctuation">:</span> <span class="token builtin">bool</span> <span class="token operator">=</span> <span class="token boolean">False</span><span class="token punctuation">,</span>
+                       n_workers<span class="token punctuation">:</span> <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+                       ran_num<span class="token punctuation">:</span> <span class="token builtin">int</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> Data<span class="token punctuation">.</span>DataLoader<span class="token punctuation">:</span>
+    data_transform <span class="token operator">=</span> transforms<span class="token punctuation">.</span>Compose<span class="token punctuation">(</span><span class="token punctuation">[</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+        transforms<span class="token punctuation">.</span>ToTensor<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span>
+    train_data <span class="token operator">=</span> Datasets<span class="token punctuation">.</span>ImageFolder<span class="token punctuation">(</span>root<span class="token operator">=</span>samples_dir<span class="token punctuation">,</span> 
+                                      transform<span class="token operator">=</span>data_transform<span class="token punctuation">)</span>
+    g <span class="token operator">=</span> torch<span class="token punctuation">.</span>Generator<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    g<span class="token punctuation">.</span>manual_seed<span class="token punctuation">(</span>ran_num<span class="token punctuation">)</span>
+    train_data_loader <span class="token operator">=</span> Data<span class="token punctuation">.</span>DataLoader<span class="token punctuation">(</span>train_data<span class="token punctuation">,</span> 
+                                        batch_size<span class="token operator">=</span>b_s<span class="token punctuation">,</span> 
+                                        shuffle<span class="token operator">=</span>shuffle_bi<span class="token punctuation">,</span>
+                                        num_workers<span class="token operator">=</span>n_workers<span class="token punctuation">,</span> 
+                                        generator<span class="token operator">=</span>g<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> train_data_loader
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><ul>
+<li>每个epoch，产生不同随机数，传给DataLoader中的generator</li>
+</ul>
+<div class="language-python ext-py line-numbers-mode"><pre v-pre class="language-python"><code><span class="token keyword">def</span> <span class="token function">data_loader_hook</span><span class="token punctuation">(</span>dir2<span class="token punctuation">,</span> dir3<span class="token punctuation">,</span> batch_size1<span class="token punctuation">,</span> epoch<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    rdx <span class="token operator">=</span> random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span>
+    loaders1 <span class="token operator">=</span> data_loader_folder<span class="token punctuation">(</span>dir2<span class="token punctuation">,</span> 
+                                  b_s<span class="token operator">=</span>batch_size1<span class="token punctuation">,</span> 
+                                  shuffle_bi<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> 
+                                  n_workers<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> 
+                                  ran_num<span class="token operator">=</span>rdx<span class="token punctuation">)</span>
+    loaders2 <span class="token operator">=</span> data_loader_folder<span class="token punctuation">(</span>dir3<span class="token punctuation">,</span> 
+                                  b_s<span class="token operator">=</span>batch_size1<span class="token punctuation">,</span> 
+                                  shuffle_bi<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> 
+                                  n_workers<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span> 
+                                  ran_num<span class="token operator">=</span>rdx<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> loaders1<span class="token punctuation">,</span> loaders2
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><ul>
+<li>N_DataLoader训练-zip-zip(*)读取</li>
+</ul>
+<div class="language-python ext-py line-numbers-mode"><pre v-pre class="language-python"><code><span class="token keyword">for</span> epoch <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>start_epoch<span class="token punctuation">,</span> end_epoch<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    data_loader1<span class="token punctuation">,</span> data_loader2 <span class="token operator">=</span> data_loader_hook<span class="token punctuation">(</span>dir4<span class="token punctuation">,</span> 
+                                                  dir5<span class="token punctuation">,</span> 
+                                                  batch_size1<span class="token punctuation">,</span> 
+                                                  epoch<span class="token punctuation">)</span>
+    model<span class="token punctuation">.</span>train<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> num_batches<span class="token punctuation">,</span> data_fuse <span class="token keyword">in</span> <span class="token builtin">enumerate</span><span class="token punctuation">(</span><span class="token builtin">zip</span><span class="token punctuation">(</span>data_loader1<span class="token punctuation">,</span> data_loader2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        load_img<span class="token punctuation">,</span> load_lab <span class="token operator">=</span> <span class="token builtin">zip</span><span class="token punctuation">(</span><span class="token operator">*</span>data_fuse<span class="token punctuation">)</span>
+        images_adv<span class="token punctuation">,</span> images_clean <span class="token operator">=</span> load_img
+        target_adv<span class="token punctuation">,</span> target_clean <span class="token operator">=</span> load_lab
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h2 id="最后-🔚" tabindex="-1"><a class="header-anchor" href="#最后-🔚" aria-hidden="true">#</a> 最后 🔚</h2>
 <p>顺顺利利，多学多用。</p>
 <!-- Now, Check out your blog at `localhost:8080`, if everything is ok, you might be interested in the following topics:
 

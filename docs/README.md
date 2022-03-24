@@ -274,6 +274,65 @@ import pdb
 pdb.set_trace()
 ```
 
+### PyTorch-N_DataLoader-同序训练 ✌️
+
+- 读取DataLoader, 设定generator
+
+```python
+def data_loader_folder(samples_dir: str,
+                       b_s: int = 1,
+                       shuffle_bi: bool = False,
+                       n_workers: int = 0,
+                       ran_num: int = 1) -> Data.DataLoader:
+    data_transform = transforms.Compose([
+        ......
+        transforms.ToTensor()
+    ])
+    train_data = Datasets.ImageFolder(root=samples_dir, 
+                                      transform=data_transform)
+    g = torch.Generator()
+    g.manual_seed(ran_num)
+    train_data_loader = Data.DataLoader(train_data, 
+                                        batch_size=b_s, 
+                                        shuffle=shuffle_bi,
+                                        num_workers=n_workers, 
+                                        generator=g)
+    return train_data_loader
+```
+
+- 每个epoch，产生不同随机数，传给DataLoader中的generator
+
+```python
+def data_loader_hook(dir2, dir3, batch_size1, epoch):
+    rdx = random.randint(1, 100)
+    loaders1 = data_loader_folder(dir2, 
+                                  b_s=batch_size1, 
+                                  shuffle_bi=True, 
+                                  n_workers=1, 
+                                  ran_num=rdx)
+    loaders2 = data_loader_folder(dir3, 
+                                  b_s=batch_size1, 
+                                  shuffle_bi=True, 
+                                  n_workers=1, 
+                                  ran_num=rdx)
+    return loaders1, loaders2
+```
+
+- N_DataLoader训练-zip-zip(*)读取
+
+```python
+for epoch in range(start_epoch, end_epoch):
+    data_loader1, data_loader2 = data_loader_hook(dir4, 
+                                                  dir5, 
+                                                  batch_size1, 
+                                                  epoch)
+    model.train()
+    for num_batches, data_fuse in enumerate(zip(data_loader1, data_loader2)):
+        load_img, load_lab = zip(*data_fuse)
+        images_adv, images_clean = load_img
+        target_adv, target_clean = load_lab
+```
+
 ## 最后 🔚
 
 顺顺利利，多学多用。

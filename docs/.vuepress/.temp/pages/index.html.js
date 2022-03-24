@@ -133,6 +133,12 @@ export const data = {
           "title": "pdb调试器 👨🏻‍💻",
           "slug": "pdb调试器-👨🏻‍💻",
           "children": []
+        },
+        {
+          "level": 3,
+          "title": "PyTorch-N_DataLoader-同序训练 ✌️",
+          "slug": "pytorch-n-dataloader-同序训练-✌️",
+          "children": []
         }
       ]
     },
@@ -144,12 +150,12 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1647514886000,
+    "updatedTime": 1647931156000,
     "contributors": [
       {
         "name": "JintaoYang18",
         "email": "colsonyang212@gmail.com",
-        "commits": 6
+        "commits": 7
       }
     ]
   },
