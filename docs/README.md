@@ -210,6 +210,23 @@ do
 done
 ```
 
+### Shell 脚本-带运行时间记录 🗔🕡️
+
+```bash
+starttime=`date +'%Y-%m-%d %H:%M:%S'`
+echo "Shell_Start_Time :            "$starttime
+
+#sleep 1m
+#sleep 1s
+
+endtime=`date +'%Y-%m-%d %H:%M:%S'`
+echo "Shell_End_Time :              "$endtime
+time1=$(($(date +%s -d "$endtime") - $(date +%s -d "$starttime")));
+echo " "
+echo "Total_Shell_Time :            "   $(($time1/60/60/24)) "days  " $(($time1/60/60)) "hours  " $(($time1/60)) "minutes  " $(($time1%60)) "seconds"
+echo " "
+```
+
 ### Normalization的扰动求解Torch保存 ➖
 
 ```python
