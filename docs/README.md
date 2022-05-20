@@ -350,6 +350,14 @@ for epoch in range(start_epoch, end_epoch):
         target_adv, target_clean = load_lab
 ```
 
+### Excel 行列变量取值赋值（用来处理实验数据）
+
+```xls
+=INDIRECT(ADDRESS((ROW()*2+1),10))
+
+=INDIRECT(ADDRESS(ROW(),COLUMN()))
+```
+
 ## 最后 🔚
 
 顺顺利利，多学多用。
