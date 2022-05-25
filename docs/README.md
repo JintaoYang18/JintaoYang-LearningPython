@@ -350,7 +350,37 @@ for epoch in range(start_epoch, end_epoch):
         target_adv, target_clean = load_lab
 ```
 
-### Excel 行列变量取值赋值（用来处理实验数据）
+### cmd实时刷新行内容 🖥️
+考虑以下简单的Python脚本：
+```python
+import time
+import sys
+for i in range(5):
+  print(i),
+  #sys.stdout.flush()
+  time.sleep(1)
+```
+这是为了打印每秒五秒钟一个号码，你要是跑不过它，因为它是现在（取决于默认的系统缓存），你可能看不到任何输出，直到脚本完成，然后一下子你会看到0 1 2 3 4印到屏幕。这是因为输出正在缓冲中，除非sys.stdout每次刷新后print您都不会立即看到输出。从sys.stdout.flush()行中删除注释以查看区别。
+
+```python
+import sys
+import time
+# 在同一行刷新 Print()
+sys.stdout.write('\r')
+sys.stdout.write('| Type [%s] : Acc:%f \t\t' %(at_tp, acc))
+sys.stdout.flush()
+print(time.time()) # 加这一行就会一行一行接着刷新
+        
+# 训练时实时显示每个epoch,iter,loss的统计数据
+sys.stdout.write('\r')
+sys.stdout.write('| Epoch [%3d/%3d] Iter[%3d/%3d] : Loss:%f \t\t'
+        %(epoch, MAX_EPOCHS, counter,
+            (train_size/TRAIN_BATCH_SIZE),cost.data.cpu().numpy()))
+end=time.time()
+print('Epoch:',epoch,' Time taken:',(end-start))
+```
+
+### Excel 行列变量取值赋值（用来处理实验数据）📊
 
 ```xls
 =INDIRECT(ADDRESS((ROW()*2+1),10))
