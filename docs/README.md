@@ -389,7 +389,7 @@ print('Epoch:',epoch,' Time taken:',(end-start))
 ```
 
 
-### 固定种子实验
+### 固定种子实验 🌱
 ```python
 import os
 import argparse

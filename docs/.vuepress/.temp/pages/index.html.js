@@ -160,8 +160,8 @@ export const data = {
         },
         {
           "level": 3,
-          "title": "固定种子实验",
-          "slug": "固定种子实验",
+          "title": "固定种子实验 🌱",
+          "slug": "固定种子实验-🌱",
           "children": []
         }
       ]
@@ -174,12 +174,12 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1653443795000,
+    "updatedTime": 1661509292000,
     "contributors": [
       {
         "name": "JintaoYang18",
         "email": "colsonyang212@gmail.com",
-        "commits": 11
+        "commits": 12
       }
     ]
   },
