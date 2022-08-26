@@ -157,6 +157,12 @@ export const data = {
           "title": "Excel 行列变量取值赋值（用来处理实验数据）📊",
           "slug": "excel-行列变量取值赋值-用来处理实验数据-📊",
           "children": []
+        },
+        {
+          "level": 3,
+          "title": "固定种子实验",
+          "slug": "固定种子实验",
+          "children": []
         }
       ]
     },
@@ -168,12 +174,12 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1653030343000,
+    "updatedTime": 1653443795000,
     "contributors": [
       {
         "name": "JintaoYang18",
         "email": "colsonyang212@gmail.com",
-        "commits": 10
+        "commits": 11
       }
     ]
   },

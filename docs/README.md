@@ -388,6 +388,31 @@ print('Epoch:',epoch,' Time taken:',(end-start))
 =INDIRECT(ADDRESS(ROW(),COLUMN()))
 ```
 
+
+### 固定种子实验
+```python
+import os
+import argparse
+import torch
+import numpy as np
+import random
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--seed", type=int, default=0)
+args = parser.parse_args()
+
+def seed_torch(seed=2018):
+    random.seed(seed)
+    os.environ['PYTHONHASHSEED'] = str(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.backends.cudnn.benchmark = False
+    torch.backends.cudnn.deterministic = True
+
+SEED=args.seed
+seed_torch(seed=SEED)
+```
 ## 最后 🔚
 
 顺顺利利，多学多用。
