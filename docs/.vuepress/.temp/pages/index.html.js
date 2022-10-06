@@ -163,6 +163,18 @@ export const data = {
           "title": "固定种子实验 🌱",
           "slug": "固定种子实验-🌱",
           "children": []
+        },
+        {
+          "level": 3,
+          "title": "超级终端 🗔",
+          "slug": "超级终端-🗔",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "打印PyTorch模型结构 🖥️",
+          "slug": "打印pytorch模型结构-🖥️",
+          "children": []
         }
       ]
     },
@@ -174,12 +186,12 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1661509292000,
+    "updatedTime": 1661509482000,
     "contributors": [
       {
         "name": "JintaoYang18",
         "email": "colsonyang212@gmail.com",
-        "commits": 12
+        "commits": 13
       }
     ]
   },

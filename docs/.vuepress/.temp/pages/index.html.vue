@@ -292,7 +292,36 @@ args <span class="token operator">=</span> parser<span class="token punctuation"
 
 SEED<span class="token operator">=</span>args<span class="token punctuation">.</span>seed
 seed_torch<span class="token punctuation">(</span>seed<span class="token operator">=</span>SEED<span class="token punctuation">)</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br></div></div><h2 id="最后-🔚" tabindex="-1"><a class="header-anchor" href="#最后-🔚" aria-hidden="true">#</a> 最后 🔚</h2>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br></div></div><h3 id="超级终端-🗔" tabindex="-1"><a class="header-anchor" href="#超级终端-🗔" aria-hidden="true">#</a> 超级终端 🗔</h3>
+<div class="language-python ext-py line-numbers-mode"><pre v-pre class="language-python"><code><span class="token triple-quoted-string string">"""
+字色              背景              颜色
+---------------------------------------
+30                40              黑色
+31                41              紅色
+32                42              綠色
+33                43              黃色
+34                44              藍色
+35                45              紫紅色
+36                46              青藍色
+37                47              白色
+---------------------------------------
+"""</span>
+<span class="token keyword">def</span> <span class="token function">textcolor</span><span class="token punctuation">(</span>code<span class="token operator">=</span><span class="token string">'0'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> os<span class="token punctuation">.</span>name <span class="token operator">==</span> <span class="token string">'nt'</span><span class="token punctuation">:</span>
+        <span class="token keyword">return</span> <span class="token string">''</span>
+    <span class="token keyword">return</span> <span class="token string">'\033[%sm'</span> <span class="token operator">%</span> code
+
+
+<span class="token keyword">print</span><span class="token punctuation">(</span>textcolor<span class="token punctuation">(</span><span class="token string">'1;32;40'</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token builtin">str</span><span class="token punctuation">(</span>best_acc<span class="token punctuation">)</span> <span class="token operator">+</span> textcolor<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><p><a href="https://blog.csdn.net/u014470361/article/details/81512330" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/u014470361/article/details/81512330<ExternalLinkIcon/></a></p>
+<h3 id="打印pytorch模型结构-🖥️" tabindex="-1"><a class="header-anchor" href="#打印pytorch模型结构-🖥️" aria-hidden="true">#</a> 打印PyTorch模型结构 🖥️</h3>
+<div class="language-python ext-py line-numbers-mode"><pre v-pre class="language-python"><code><span class="token comment"># pip install torchinfo</span>
+<span class="token keyword">from</span> torchinfo <span class="token keyword">import</span> summary
+
+device <span class="token operator">=</span> torch<span class="token punctuation">.</span>device<span class="token punctuation">(</span><span class="token string">"cuda:0"</span><span class="token punctuation">)</span>
+net <span class="token operator">=</span> ResNet34<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>to<span class="token punctuation">(</span>device<span class="token punctuation">)</span>
+summary<span class="token punctuation">(</span>net<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">224</span><span class="token punctuation">,</span> <span class="token number">224</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h2 id="最后-🔚" tabindex="-1"><a class="header-anchor" href="#最后-🔚" aria-hidden="true">#</a> 最后 🔚</h2>
 <p>顺顺利利，多学多用。</p>
 <!-- Now, Check out your blog at `localhost:8080`, if everything is ok, you might be interested in the following topics:
 

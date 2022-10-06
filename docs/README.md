@@ -413,6 +413,43 @@ def seed_torch(seed=2018):
 SEED=args.seed
 seed_torch(seed=SEED)
 ```
+
+### 超级终端 🗔
+```python
+"""
+字色              背景              颜色
+---------------------------------------
+30                40              黑色
+31                41              紅色
+32                42              綠色
+33                43              黃色
+34                44              藍色
+35                45              紫紅色
+36                46              青藍色
+37                47              白色
+---------------------------------------
+"""
+def textcolor(code='0'):
+    if os.name == 'nt':
+        return ''
+    return '\033[%sm' % code
+
+
+print(textcolor('1;32;40') + str(best_acc) + textcolor())
+```
+[https://blog.csdn.net/u014470361/article/details/81512330](https://blog.csdn.net/u014470361/article/details/81512330)
+
+### 打印PyTorch模型结构 🖥️
+```python
+# pip install torchinfo
+from torchinfo import summary
+
+device = torch.device("cuda:0")
+net = ResNet34().to(device)
+summary(net, (1, 3, 224, 224))
+```
+
+
 ## 最后 🔚
 
 顺顺利利，多学多用。
